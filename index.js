@@ -31,7 +31,7 @@ console.log(userMessage,'is userMessage')
     res.status(500).json({ error: error.message });
   }
 });
-
+// OPENAI_API_KEY=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
 app.listen(process.env.PORT,()=>{
     console.log("Port",process.env.PORT,"is running")
 })
