@@ -1,8 +1,10 @@
 const express=require("express")
 require('dotenv').config()
-const OpenAI = require("openai")
+// const OpenAI = require("openai")
 const axios = require('axios')
+const cors=require("cors")
 const app=express()
+app.use(cors())
 app.use(express.json());
 app.get("/",(req,res)=>{
     res.send("welcome")
@@ -35,13 +37,15 @@ console.log(process.env.OPENAI_API_KEY)
 
 app.post('/generate-response', async (req, res) => {
   try {
+    const{type,words}=req.query
+    console.log(type,words)
     // console.log(req.body)
-    const userMessage = req.body.message; // Get user's message from the request body
-console.log(userMessage,'is userMessage')
+    const {keyword} = req.body; // Get user's message from the request body
+// console.log(userMessage,'is userMessage')
     // Send a request to the OpenAI API
     const response = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
-      prompt: userMessage,
-      max_tokens: 50, // Adjust this as needed
+      prompt:`please give me a ${type} with respect to ${keyword} with maximum ${words} words`,
+      max_tokens: Number(words), // Adjust this as needed 
     }, {
       headers: {
         'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
