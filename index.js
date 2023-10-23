@@ -24,7 +24,7 @@ app.post('/generate-response', async (req, res) => {
     }else if(type==="story"){
       promptMessage=`Act as James cameroon and give zoomout view of his upcoming  story on ${keyword} with in  ${Number(words)} words`
     }else if(type==="shayari"){
-      promptMessage=`Give me poetry in hindi language on ${keyword} in tone of Amitabh bachhan with in ${Number(words)} words.`
+      promptMessage=`Give me poetry in hindi language on ${keyword} in tone of Amitabh Bachchan  with in ${Number(words)} words.`
     }
     console.log(promptMessage,"is prompt")
     const response = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
